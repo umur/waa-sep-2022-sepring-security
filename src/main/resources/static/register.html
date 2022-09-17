@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to register page</title>
+</head>
+
+<body>
+<div class="container"></div>
+<div style="width: 20%; margin: 0 auto; margin-top: 50px;">
+    <div >
+        <div >
+            Login
+        </div>
+        <div >
+            <div >
+                <label for="Username" >Username</label>
+                <input type="email" id="username"/>
+            </div>
+            <div>
+                <label for="Password" >Password</label>
+                <input type="password"  id="password"/>
+            </div>
+            <div >
+                <label for="firstname" >First Name</label>
+                <input type="firstname" id="firstname"/>
+            </div>
+            <div class="mb-3">
+                <label >Last Name</label>
+                <input type="lastname"  id="lastname"/>
+            </div>
+            <button id="register" >Register</button>
+        </div>
+    </div>
+    <hr>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <span>Wanna Login?</span>
+        <button id="login" >Login</button>
+    </div>
+
+</div>
+</body>
+<script>
+
+    const login = document.getElementById("login");
+    login.onclick = () => {window.location.href = "./login.html"};
+
+    const register = document.getElementById("register");
+    register.onclick = () => {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("lastname").value;
+        const json = {email: username, password: password, firstname, lastname};
+        fetch("http://localhost:8080/uaa/register", {method: 'POST', body: JSON.stringify(json), headers: new Headers({'content-type': 'application/json'}),})
+            .then(response => window.location.href = "./login.html")
+            .catch(() => alert("Invalid Data!"))
+    };
+</script>
+</html>

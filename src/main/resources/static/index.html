@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Login page</title>
+</head>
+<body>
+
+<div style="width: 20%; margin: 0 auto; margin-top: 50px;">
+    <div >
+        <div >
+            Login
+        </div>
+        <div >
+            <div >
+                <label for="Username" >Username</label>
+                <input type="email"  id="username"/>
+            </div>
+            <div class="mb-3">
+                <label for="Password" >Password</label>
+                <input type="password"  id="password"/>
+            </div>
+            <button id="login" >Login</button>
+        </div>
+    </div>
+    <hr>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <span>Don't have an account?</span>
+        <button id="register" >Register</button>
+    </div>
+
+</div>
+</body>
+<script>
+
+    const register = document.getElementById("register");
+    register.onclick = () => {window.location.href = "./register.html"};
+
+    const login = document.getElementById("login");
+    login.onclick = () => {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const json = {email: username, password: password};
+        fetch("http://localhost:8080/uaa", {method: 'POST', body: JSON.stringify(json), headers: new Headers({'content-type': 'application/json'}),})
+            .then(response => {
+                sessionStorage.setItem("token", response.accessToken)
+                window.location.href = "./list.html";
+            })
+            .catch(() => alert("Invalid Credentials!"));
+    };
+</script>
+
+</html>
+</html>

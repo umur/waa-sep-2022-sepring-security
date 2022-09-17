@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to list page</title>
+</head>
+
+<body>
+
+<div class="container"></div>
+<div style="width: 30%; margin: 0 auto; margin-top: 60px;">
+    <div >
+        <div >
+            List
+        </div>
+        <div >
+            <p>You are protected</p>
+            <button id="logout" >Logout!</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    if (!sessionStorage.getItem("token")) window.location.href = "./login.html"
+
+    const logout = document.getElementById("logout");
+    logout.onclick = () => {
+        sessionStorage.removeItem("token");
+        window.location.href = "./register.html"
+    };
+</script>
+
+</html>
