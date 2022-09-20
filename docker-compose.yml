@@ -1,0 +1,38 @@
+services:
+
+  postgres:
+    container_name: postgres-spring-security
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - db-net
+    restart: unless-stopped
+
+#  keycloak:
+#    container_name: keycloak
+#    image: quay.io/keycloak/keycloak:19.0.2
+#    environment:
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#    ports:
+#      - 8080:8081
+#    networks:
+#      - db-net
+#    restart: unless-stopped
+#    command:
+#      start-dev
+
+networks:
+
+  db-net:
+    driver: bridge
+
+volumes:
+  postgres:
