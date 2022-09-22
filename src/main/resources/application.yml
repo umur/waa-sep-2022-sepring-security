@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.56.4:5433/test-db
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: postgres-root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+debug: true
+app:
+  jwt:
+    token-expiration-length: 900000
+    secret-key: appSecretKey
+
+
