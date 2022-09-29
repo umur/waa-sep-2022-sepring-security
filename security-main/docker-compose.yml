@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: cs545_db_security
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: lab05
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
